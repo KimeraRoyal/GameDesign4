@@ -400,8 +400,8 @@ MonoBehaviour:
   - {x: 1.24, y: -0.37}
   - {x: -0.92, y: 0.83}
   - {x: 7.3, y: 0.32}
-  _debugState: 1
-  _corridorChance: 15
+  _debugState: 3
+  _corridorChance: 26.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

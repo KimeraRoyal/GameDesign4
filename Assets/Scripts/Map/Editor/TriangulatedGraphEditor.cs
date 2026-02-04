@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Map.Editor
 {
-    [CustomEditor(typeof(GraphGenerator))]
+    [CustomEditor(typeof(MapGenerator))]
     public class TriangulatedGraphEditor : UnityEditor.Editor
     {
         SerializedProperty points;
@@ -16,8 +16,6 @@ namespace Map.Editor
 
         void OnSceneGUI()
         {
-            GraphGenerator graph = (GraphGenerator)target;
-            
             Handles.color = Color.yellow;
 
             SerializedProperty currentPoint = points.GetArrayElementAtIndex(0);
