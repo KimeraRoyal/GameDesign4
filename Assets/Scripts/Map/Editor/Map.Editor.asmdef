@@ -1,5 +1,5 @@
 {
-    "name": "NodeGraph.Editor",
+    "name": "Map.Editor",
     "rootNamespace": "",
     "references": [
         "GUID:401d69a6f34eeda42b52d02a294dd1a6"

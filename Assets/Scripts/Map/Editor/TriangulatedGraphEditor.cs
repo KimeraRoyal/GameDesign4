@@ -1,9 +1,10 @@
+using Map.Map;
 using UnityEditor;
 using UnityEngine;
 
-namespace NodeGraph.Editor
+namespace Map.Editor
 {
-    [CustomEditor(typeof(TriangulatedGraph))]
+    [CustomEditor(typeof(GraphGenerator))]
     public class TriangulatedGraphEditor : UnityEditor.Editor
     {
         SerializedProperty points;
@@ -15,7 +16,7 @@ namespace NodeGraph.Editor
 
         void OnSceneGUI()
         {
-            TriangulatedGraph graph = (TriangulatedGraph)target;
+            GraphGenerator graph = (GraphGenerator)target;
             
             Handles.color = Color.yellow;
 

@@ -1,6 +1,6 @@
 {
-    "name": "NodeGraph",
-    "rootNamespace": "NodeGraph",
+    "name": "Map",
+    "rootNamespace": "Map",
     "references": [
         "GUID:b2d0c095333935448a4ac0b1e42fa3f6"
     ],
