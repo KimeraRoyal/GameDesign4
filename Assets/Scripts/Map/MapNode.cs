@@ -2,15 +2,13 @@
 
 namespace Map.Map
 {
-    public class Node
+    public class MapNode
     {
         public Vector2 Position { get; set; }
-        public int ID { get; set; }
 
-        public Node(Vector2 position, int id)
+        public MapNode(Vector2 position)
         {
             Position = position;
-            ID = id;
         }
     }
 }

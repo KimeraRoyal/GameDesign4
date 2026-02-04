@@ -8,26 +8,21 @@ namespace Map.Map
 {
     public class MapGenerator : MonoBehaviour
     {
-        static int _nodeId;
-        
-        [SerializeField] List<Vector2> _points;
-
         [SerializeField] [Range(0.0f, 100.0f)] float _corridorChance = 15.0f;
 
-        List<Vertex<Node>> _vertices;
+        List<Vertex<MapNode>> _vertices;
         List<Edge> _edges;
 
         public IReadOnlyList<Vertex> Vertices => _vertices;
         public IReadOnlyList<Edge> Edges => _edges;
 
-        void Start()
+        public void Generate(IEnumerable<MapNode> nodes)
         {
-            Generate();
-        }
-
-        public void Generate()
-        {
-            _vertices = _points.Select(point => new Vertex<Node>(point, new Node(point, _nodeId++))).ToList();
+            _vertices = new List<Vertex<MapNode>>();
+            foreach (MapNode node in nodes)
+            {
+                _vertices.Add(new Vertex<MapNode>(node.Position, node));
+            }
             
             Triangulation triangulation = Triangulation.Triangulate(_vertices);
             if (_corridorChance > 99.99f)

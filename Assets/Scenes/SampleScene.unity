@@ -384,24 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1222a43469a4a0889a464bc39a3b694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: NodeGraph::NodeGraph.TriangulatedGraph
-  _points:
-  - {x: 0, y: 0}
-  - {x: 3, y: 0}
-  - {x: 2, y: 2}
-  - {x: -4.15, y: -2.53}
-  - {x: -1.7, y: 3.98}
-  - {x: -6.43, y: 0.94}
-  - {x: 6.68, y: 3.98}
-  - {x: 4.6, y: -3.19}
-  - {x: -4.74, y: 2.15}
-  - {x: 0.27, y: -2.9}
-  - {x: -7.46, y: -4.1}
-  - {x: -3.76, y: 0.55}
-  - {x: 1.24, y: -0.37}
-  - {x: -0.92, y: 0.83}
-  - {x: 7.3, y: 0.32}
-  _debugState: 3
-  _corridorChance: 26.5
+  _corridorChance: 25
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
