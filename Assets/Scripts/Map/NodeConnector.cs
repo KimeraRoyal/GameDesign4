@@ -20,78 +20,65 @@ namespace Map
             Line
         }
 
-        [SerializeField] bool _drawLines;
-
         [SerializeField] Mode _mode = Mode.Corridors;
         [SerializeField] [Range(0.0f, 100.0f)] float _corridorChance = 15.0f;
 
-        List<Vertex<MapNode>> _vertices;
-        List<Edge> _edges;
-
-        public IReadOnlyList<Vertex> Vertices => _vertices;
-        public IReadOnlyList<Edge> Edges => _edges;
-        
-        public void Connect(IEnumerable<MapNode> nodes)
+        public HashSet<Connection> Connect(IEnumerable<Node> nodes)
         {
-            _vertices = new List<Vertex<MapNode>>();
-            foreach (MapNode node in nodes)
-            {
-                _vertices.Add(new Vertex<MapNode>(node.Position, node));
-            }
-            _edges?.Clear();
+            var connections = new HashSet<Connection>();
+            
+            var vertices = new List<Vertex<Node>>();
+            var edges = FindEdges(nodes, vertices);
 
-            if(_mode == Mode.None) { return; }
+            // TODO: Could make Connection class and form a list of them
+            foreach (Edge edge in edges)
+            {
+                var a = edge.U as Vertex<Node>;
+                var b = edge.V as Vertex<Node>;
+                if(a == null || b == null) { continue; }
 
-            switch (_mode)
-            {
-                case Mode.Triangulate:
-                case Mode.MinimumSpanningTree:
-                case Mode.Corridors:
-                {
-                    Triangulation triangulation = Triangulation.Triangulate(_vertices);
-                    _edges = triangulation.Edges;
-                    break;
-                }
-                case Mode.ConnectAll:
-                case Mode.ConnectAllMinimumSpanningTree:
-                {
-                    ConnectAll connectAll = ConnectAll.Connect(_vertices);
-                    _edges = connectAll.Edges;
-                    break;
-                }
-                case Mode.Line:
-                {
-                    _edges = new List<Edge>();
-                    for (int i = 0; i < _vertices.Count - 1; i++)
-                    {
-                        _edges.Add(new Edge(_vertices[i], _vertices[i + 1]));
-                    }
-                    return;
-                }
+                connections.Add(new Connection(a.VertexData, b.VertexData));
             }
-            
-            if (_corridorChance > 99.99f || _mode == Mode.Triangulate || _mode == Mode.ConnectAll) { return; }
-            
-            MinimumSpanningTree mst = MinimumSpanningTree.Find(_edges, _vertices[0]);
-            _edges = mst.Edges;
-            
-            if(_mode == Mode.MinimumSpanningTree || _mode == Mode.ConnectAllMinimumSpanningTree) { return; }
-            
-            foreach (Edge excluded in mst.Excluded.Where(_ => Random.Range(0.0f, 100.0f) < _corridorChance))
-            {
-                _edges.Add(excluded);
-            }
+
+            return connections;
         }
 
-        void OnDrawGizmosSelected()
+        private List<Edge> FindEdges(IEnumerable<Node> nodes, List<Vertex<Node>> vertices)
         {
-            if(!_drawLines || _edges == null) { return; }
-            
-            Gizmos.color = Color.green;
-            foreach (Edge edge in _edges)
+            vertices.AddRange(nodes.Select(node => new Vertex<Node>(node.Position, node)));
+
+            var edges = _mode switch
             {
-                Gizmos.DrawLine(edge.U.Position, edge.V.Position);
+                Mode.None => new List<Edge>(),
+                Mode.Triangulate or Mode.MinimumSpanningTree or Mode.Corridors =>   Triangulation.Triangulate(vertices).Edges,
+                Mode.ConnectAll or Mode.ConnectAllMinimumSpanningTree =>            ConnectAll.Connect(vertices).Edges,
+                Mode.Line =>                                                        ConnectLine(vertices),
+                _ => throw new ArgumentOutOfRangeException()
+            };
+            
+            if (_corridorChance > 99.99f || _mode is not (Mode.MinimumSpanningTree or Mode.ConnectAllMinimumSpanningTree or Mode.Corridors)) { return edges; }
+            
+            MinimumSpanningTree mst = MinimumSpanningTree.Find(edges, vertices[0]);
+            edges = mst.Edges;
+            
+            if(_mode is not Mode.Corridors) { return edges; }
+
+            edges.AddRange(mst.Excluded.Where(_ => Random.Range(0.0f, 100.0f) < _corridorChance));
+
+            return edges;
+        }
+
+        private static List<Edge> ConnectLine(IEnumerable<Vertex> vertices)
+        {
+            var edges = new List<Edge>();
+
+            Vertex previous = null;
+            foreach (Vertex vertex in vertices)
+            {
+                if(previous != null) { edges.Add(new Edge(previous, vertex)); }
+                previous = vertex;
             }
+            return edges;
         }
     }
 }

@@ -9,55 +9,44 @@ namespace Map
     {
         NodeConnector _connector;
         
-        [SerializeField] bool _drawBounds;
-        [SerializeField] bool _drawNodes;
-        
         [SerializeField] Vector2 _size;
-        
-        List<MapNode> _nodes;
+
+        List<Node> _nodes;
+        HashSet<Connection> _connections;
 
         public Vector2 Size => _size;
 
-        public List<MapNode> Nodes => _nodes;
+        public List<Node> Nodes => _nodes;
 
-        protected void Awake()
+        protected virtual void Awake()
         {
             _connector = GetComponent<NodeConnector>();
             
-            _nodes = new List<MapNode>();
+            _nodes = new List<Node>();
+        }
+
+        protected virtual void Start()
+        {
+            Generate();
         }
 
         [Button("Generate")]
         public void Generate()
         {
             Populate();
-            _connector.Connect(_nodes);
+            _connections = _connector.Connect(Nodes);
         }
         
         protected abstract void Populate();
 
         protected virtual void OnDrawGizmosSelected()
         {
-            DrawBoundGizmos();
-            DrawNodeGizmos();
-        }
+            if (_connections == null) { return; }
 
-        private void DrawBoundGizmos()
-        {
-            if (!_drawBounds) { return; }
-            
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(transform.position, _size);
-        }
-
-        private void DrawNodeGizmos()
-        {
-            if(!_drawNodes || _nodes == null) { return; }
-            
-            Gizmos.color = Color.red;
-            foreach (MapNode node in _nodes)
+            Gizmos.color = Color.yellow;
+            foreach (Connection connection in _connections)
             {
-                Gizmos.DrawCube(node.Position, Vector3.one * 0.1f);
+                Gizmos.DrawLine(connection.A.Position, connection.B.Position);
             }
         }
     }

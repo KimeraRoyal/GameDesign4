@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -8,8 +9,6 @@ namespace Map
     {
         private static readonly System.Random Rng = new();
 
-        [SerializeField] bool _drawDivisions;
-        
         [SerializeField] uint _iterations = 4;
 
         [SerializeField] [MinMaxSlider(0.0f, 1.0f)] private Vector2 _splitRange = new(0.45f, 0.55f);
@@ -41,27 +40,7 @@ namespace Map
             {
                 Vector2 minNodePosition = Vector2.Lerp(_rectDivider.Divisions[i].min, _rectDivider.Divisions[i].max, _nodePositionRange.x);
                 Vector2 maxNodePosition = Vector2.Lerp(_rectDivider.Divisions[i].min, _rectDivider.Divisions[i].max, _nodePositionRange.y);
-                Nodes.Add(new MapNode(new Vector2(Random.Range(minNodePosition.x, maxNodePosition.x), Random.Range(minNodePosition.y, maxNodePosition.y))));
-            }
-        }
-
-        protected override void OnDrawGizmosSelected()
-        {
-            DrawDivisionGizmos();
-            base.OnDrawGizmosSelected();
-        }
-
-        private void DrawDivisionGizmos()
-        {
-            if(!_drawDivisions || _rectDivider == null) { return; }
-            
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireCube(_rectDivider.PaddedBounds.center, _rectDivider.PaddedBounds.size);
-            
-            Gizmos.color = Color.green;
-            foreach (Rect division in _rectDivider.Divisions)
-            {
-                Gizmos.DrawWireCube(division.center, division.size);
+                Nodes.Add(new Node(new Vector2(Random.Range(minNodePosition.x, maxNodePosition.x), Random.Range(minNodePosition.y, maxNodePosition.y))));
             }
         }
     }
