@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Graph.Graph;
 using UnityEngine;
@@ -13,8 +14,13 @@ namespace Map.Map
             None,
             Triangulate,
             MinimumSpanningTree,
-            Corridors
+            Corridors,
+            ConnectAll,
+            ConnectAllMinimumSpanningTree,
+            Line
         }
+
+        [SerializeField] bool _drawLines;
 
         [SerializeField] Mode _mode = Mode.Corridors;
         [SerializeField] [Range(0.0f, 100.0f)] float _corridorChance = 15.0f;
@@ -25,29 +31,51 @@ namespace Map.Map
         public IReadOnlyList<Vertex> Vertices => _vertices;
         public IReadOnlyList<Edge> Edges => _edges;
         
-        public void Generate(IEnumerable<MapNode> nodes)
+        public void Connect(IEnumerable<MapNode> nodes)
         {
             _vertices = new List<Vertex<MapNode>>();
             foreach (MapNode node in nodes)
             {
                 _vertices.Add(new Vertex<MapNode>(node.Position, node));
             }
-            
+            _edges?.Clear();
+
             if(_mode == Mode.None) { return; }
-            
-            Triangulation triangulation = Triangulation.Triangulate(_vertices);
-            if (_corridorChance > 99.99f)
+
+            switch (_mode)
             {
-                _edges = triangulation.Edges;
-                return;
+                case Mode.Triangulate:
+                case Mode.MinimumSpanningTree:
+                case Mode.Corridors:
+                {
+                    Triangulation triangulation = Triangulation.Triangulate(_vertices);
+                    _edges = triangulation.Edges;
+                    break;
+                }
+                case Mode.ConnectAll:
+                case Mode.ConnectAllMinimumSpanningTree:
+                {
+                    ConnectAll connectAll = ConnectAll.Connect(_vertices);
+                    _edges = connectAll.Edges;
+                    break;
+                }
+                case Mode.Line:
+                {
+                    _edges = new List<Edge>();
+                    for (int i = 0; i < _vertices.Count - 1; i++)
+                    {
+                        _edges.Add(new Edge(_vertices[i], _vertices[i + 1]));
+                    }
+                    return;
+                }
             }
             
-            if(_mode == Mode.Triangulate) { return; }
+            if (_corridorChance > 99.99f || _mode == Mode.Triangulate || _mode == Mode.ConnectAll) { return; }
             
-            MinimumSpanningTree mst = MinimumSpanningTree.Find(triangulation.Edges, triangulation.Vertices[0]);
+            MinimumSpanningTree mst = MinimumSpanningTree.Find(_edges, _vertices[0]);
             _edges = mst.Edges;
             
-            if(_mode == Mode.MinimumSpanningTree) { return; }
+            if(_mode == Mode.MinimumSpanningTree || _mode == Mode.ConnectAllMinimumSpanningTree) { return; }
             
             foreach (Edge excluded in mst.Excluded.Where(_ => Random.Range(0.0f, 100.0f) < _corridorChance))
             {
@@ -57,7 +85,7 @@ namespace Map.Map
 
         void OnDrawGizmosSelected()
         {
-            if(_edges == null) { return; }
+            if(!_drawLines || _edges == null) { return; }
             
             Gizmos.color = Color.green;
             foreach (Edge edge in _edges)

@@ -1,44 +1,64 @@
+using System.Collections.Generic;
+using Map.Map;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Map
 {
-    public class Room : MonoBehaviour
+    [RequireComponent(typeof(NodeConnector))]
+    public abstract class Room : MonoBehaviour
     {
-        [SerializeField] Vector2 _size;
-
-        [SerializeField] uint _iterations = 4;
+        NodeConnector _connector;
         
-        [SerializeField] [MinMaxSlider(0.0f, 1.0f)] private Vector2 _splitRange = new(0.45f, 0.55f);
+        [SerializeField] bool _drawBounds;
+        [SerializeField] bool _drawNodes;
+        
+        [SerializeField] Vector2 _size;
+        
+        List<MapNode> _nodes;
 
-        [SerializeField] Vector2 _minSubdivisionSize;
+        public Vector2 Size => _size;
 
-        [SerializeField] Vector2 _border;
-        [SerializeField] Vector2 _subdivisionPadding;
+        public List<MapNode> Nodes => _nodes;
 
-        RectDivider _rectDivider;
-
-        [Button("Divide")]
-        public void Divide()
+        protected void Awake()
         {
-            Rect bounds = new((Vector2) transform.position - _size / 2.0f, _size);
-            _rectDivider = RectDivider.Divide(bounds, _iterations, _splitRange, _minSubdivisionSize, _border, _subdivisionPadding);
+            _connector = GetComponent<NodeConnector>();
+            
+            _nodes = new List<MapNode>();
         }
 
-        void OnDrawGizmosSelected()
+        [Button("Generate")]
+        public void Generate()
         {
+            Populate();
+            _connector.Connect(_nodes);
+        }
+        
+        protected abstract void Populate();
+
+        protected virtual void OnDrawGizmosSelected()
+        {
+            DrawBoundGizmos();
+            DrawNodeGizmos();
+        }
+
+        private void DrawBoundGizmos()
+        {
+            if (!_drawBounds) { return; }
+            
             Gizmos.color = Color.green;
             Gizmos.DrawWireCube(transform.position, _size);
+        }
+
+        private void DrawNodeGizmos()
+        {
+            if(!_drawNodes || _nodes == null) { return; }
             
-            if(_rectDivider == null) { return; }
-            
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireCube(_rectDivider.PaddedBounds.center, _rectDivider.PaddedBounds.size);
-            
-            Gizmos.color = Color.green;
-            foreach (Rect division in _rectDivider.Divisions)
+            Gizmos.color = Color.red;
+            foreach (MapNode node in _nodes)
             {
-                Gizmos.DrawWireCube(division.center, division.size);
+                Gizmos.DrawCube(node.Position, Vector3.one * 0.1f);
             }
         }
     }

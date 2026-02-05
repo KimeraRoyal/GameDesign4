@@ -349,7 +349,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 961340770}
-  - component: {fileID: 961340772}
+  - component: {fileID: 961340774}
   - component: {fileID: 961340771}
   m_Layer: 0
   m_Name: Graph
@@ -385,9 +385,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1222a43469a4a0889a464bc39a3b694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: NodeGraph::NodeGraph.TriangulatedGraph
-  _mode: 2
+  _drawLines: 1
+  _mode: 3
   _corridorChance: 25
---- !u!114 &961340772
+--- !u!114 &961340774
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -396,15 +397,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 961340769}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a52eb2c48c7a7e4083980c87ea71c72, type: 3}
+  m_Script: {fileID: 11500000, guid: 0005e69e9d74d8947b90546f46eeae4a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Map::Map.Room
+  m_EditorClassIdentifier: Map::Map.RoomDivider
+  _drawBounds: 1
+  _drawNodes: 1
   _size: {x: 10, y: 10}
-  _iterations: 8
+  _drawDivisions: 0
+  _iterations: 4
   _splitRange: {x: 0.45, y: 0.55}
-  _minSubdivisionSize: {x: 0.5, y: 0.5}
-  _border: {x: 0.5, y: 0.5}
-  _subdivisionPadding: {x: 0.1, y: 0.1}
+  _minSubdivisionSize: {x: 0, y: 0}
+  _border: {x: 0, y: 0}
+  _subdivisionPadding: {x: 0, y: 0}
+  _maxNodes: 4
+  _nodePositionRange: {x: 0.20164609, y: 0.7983539}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
