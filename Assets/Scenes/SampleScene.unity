@@ -401,7 +401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Map::Map.RoomDivider
   _drawBounds: 1
-  _drawNodes: 1
+  _drawNodes: 0
   _size: {x: 10, y: 10}
   _drawDivisions: 0
   _iterations: 4

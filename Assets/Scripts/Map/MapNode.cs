@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Map.Map
+namespace Map
 {
     public class MapNode
     {

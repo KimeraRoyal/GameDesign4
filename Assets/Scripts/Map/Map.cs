@@ -1,12 +1,11 @@
 using System.Collections.Generic;
-using Map.Map;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Map
 {
     [RequireComponent(typeof(NodeConnector))]
-    public abstract class Room : MonoBehaviour
+    public abstract class Map : MonoBehaviour
     {
         NodeConnector _connector;
         

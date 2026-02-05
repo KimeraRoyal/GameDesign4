@@ -1,11 +1,10 @@
 using System.Linq;
-using Map.Map;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Map
 {
-    public class SubdividedRoom : Room
+    public class SubdividedMap : Map
     {
         private static readonly System.Random Rng = new();
 

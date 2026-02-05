@@ -5,7 +5,7 @@ using Graph.Graph;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Map.Map
+namespace Map
 {
     public class NodeConnector : MonoBehaviour
     {
