@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - Stock Ticker
-  - 
-  - 
+  - Map
+  - Map Overlay
   - 
   - 
   - 
@@ -40,6 +40,18 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BG
+    uniqueID: 2258909747
+    locked: 0
+  - name: Tiles
+    uniqueID: 3262021037
+    locked: 0
+  - name: Objects
+    uniqueID: 3094151249
+    locked: 0
+  - name: FG
+    uniqueID: 266939727
     locked: 0
   m_RenderingLayers:
   - Default

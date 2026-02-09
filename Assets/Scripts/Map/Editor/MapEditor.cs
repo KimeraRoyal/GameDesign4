@@ -9,7 +9,12 @@ namespace Map.Editor
         protected virtual void OnSceneGUI()
         {
             Map map = target as Map;
-            if (!map || map.Nodes == null) { return; }
+            if (!map) { return; }
+
+            Handles.color = Color.green;
+            Handles.DrawWireCube(map.transform.position, map.Size);
+            
+            if(map.Nodes == null) { return; }
             
             EditorGUI.BeginChangeCheck();
             foreach (Node node in map.Nodes)

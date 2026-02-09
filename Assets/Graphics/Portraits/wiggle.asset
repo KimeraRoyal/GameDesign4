@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae03ad3b28724e24b97b03b09296fa1b, type: 3}
+  m_Name: wiggle
+  m_EditorClassIdentifier: Kitty.FrameAnimation::Coremera.FrameAnimation.FrameAnimation
+  m_fps: 24
+  m_loopMode: 1
+  m_frames:
+  - {fileID: 1329969913, guid: 3cd58f8d605775447ba0bc6915536bb6, type: 3}
+  - {fileID: 546750636, guid: 3cd58f8d605775447ba0bc6915536bb6, type: 3}
+  - {fileID: 1830490884, guid: 3cd58f8d605775447ba0bc6915536bb6, type: 3}
+  - {fileID: 1433811251, guid: 3cd58f8d605775447ba0bc6915536bb6, type: 3}
+  - {fileID: -2126130068, guid: 3cd58f8d605775447ba0bc6915536bb6, type: 3}
+  - {fileID: 1598281556, guid: 3cd58f8d605775447ba0bc6915536bb6, type: 3}
+  - {fileID: 852412544, guid: 3cd58f8d605775447ba0bc6915536bb6, type: 3}
+  - {fileID: 1466107803, guid: 3cd58f8d605775447ba0bc6915536bb6, type: 3}
+  - {fileID: 1445627324, guid: 3cd58f8d605775447ba0bc6915536bb6, type: 3}
+  - {fileID: -1704710504, guid: 3cd58f8d605775447ba0bc6915536bb6, type: 3}
+  - {fileID: 1351158142, guid: 3cd58f8d605775447ba0bc6915536bb6, type: 3}

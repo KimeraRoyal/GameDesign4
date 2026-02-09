@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Map
 {
@@ -17,6 +18,9 @@ namespace Map
         public Vector2 Size => _size;
 
         public List<Node> Nodes => _nodes;
+        public HashSet<Connection> Connections => _connections;
+
+        public UnityEvent OnGenerated;
 
         protected virtual void Awake()
         {
@@ -35,6 +39,7 @@ namespace Map
         {
             Populate();
             _connections = _connector.Connect(Nodes);
+            OnGenerated?.Invoke();
         }
         
         protected abstract void Populate();

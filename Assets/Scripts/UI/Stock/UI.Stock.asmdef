@@ -1,0 +1,17 @@
+{
+    "name": "UI.Stock",
+    "rootNamespace": "",
+    "references": [
+        "GUID:09b0e5d06adbef146a459da691ff2a11",
+        "GUID:d01693a1e4780644494c102fccad341a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
