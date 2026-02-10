@@ -13,10 +13,12 @@ namespace Coremera.Tile
         public class WeightedOption
         {
             [SerializeField] Sprite _sprite;
+            
             [SerializeField] float _weight = 1.0f;
             [SerializeField] float _totalWeight = 0.0f;
             
             public Sprite Sprite => _sprite;
+            
             public float Weight => _weight;
 
             public float TotalWeight
