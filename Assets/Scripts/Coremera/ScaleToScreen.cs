@@ -8,7 +8,7 @@ namespace Coremera
         
         Vector2Int _previousSize;
         
-        void Awake()
+        void Start()
         {
             Scale(new Vector2Int(Screen.width, Screen.height));
         }

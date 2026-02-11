@@ -1,0 +1,20 @@
+{
+    "name": "Map.Selection",
+    "rootNamespace": "",
+    "references": [
+        "GUID:401d69a6f34eeda42b52d02a294dd1a6",
+        "GUID:a5e1522f8d2582e438669fa2f5873d01",
+        "GUID:c51b127a5c8b2644aa9f6e9e94c6ca77",
+        "GUID:6a6ece21a11e3cb40bc0d620737e537c",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

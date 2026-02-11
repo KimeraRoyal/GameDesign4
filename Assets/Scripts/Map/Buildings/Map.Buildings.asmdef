@@ -1,0 +1,18 @@
+{
+    "name": "Map.Buildings",
+    "rootNamespace": "",
+    "references": [
+        "GUID:401d69a6f34eeda42b52d02a294dd1a6",
+        "GUID:a5e1522f8d2582e438669fa2f5873d01",
+        "GUID:c51b127a5c8b2644aa9f6e9e94c6ca77"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

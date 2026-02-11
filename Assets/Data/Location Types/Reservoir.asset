@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40f9c2cc813643a4b720454524d77062, type: 3}
+  m_Name: Reservoir
+  m_EditorClassIdentifier: Map::Map.LocationType
+  _tileSprite: {fileID: -279533639, guid: 022500fbf4ef5254fa862cbfc4319601, type: 3}
+  _supportedBuildings:
+  - {fileID: 9073443733460530355, guid: 408543b11536692409f97cd5de66c7e6, type: 3}
+  _tileInformation: Deep pools of raw, unconcentrated Zeeblefluid.
+  _informationUpdates: 1

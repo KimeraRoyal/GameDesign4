@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40f9c2cc813643a4b720454524d77062, type: 3}
+  m_Name: Open
+  m_EditorClassIdentifier: Map::Map.LocationType
+  _tileSprite: {fileID: -130569689, guid: 022500fbf4ef5254fa862cbfc4319601, type: 3}
+  _supportedBuildings:
+  - {fileID: 6734465653639936006, guid: 2f391dec39e50e04ab280f149fd20811, type: 3}
+  - {fileID: 1119185518908763150, guid: d2d5f0a7c70f8d24291fc773b6eb3afe, type: 3}
+  _tileInformation: Stable land, suitable for buildings.
+  _informationUpdates: 1

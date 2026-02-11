@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 2369528188378366177}
   - component: {fileID: 2015120494998821586}
   - component: {fileID: 8207456776925462286}
+  - component: {fileID: 5094080491676965140}
   m_Layer: 8
   m_Name: Map
   m_TagString: Untagged
@@ -80,6 +81,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4839043404475820699}
+  - {fileID: 8998179430854664062}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2156390614502735663
@@ -152,16 +154,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Map::LocationAssigner
   _options:
-  - _type: 0
+  - _type: {fileID: 11400000, guid: e6ef0424be8c2a24491e1c012e1a981b, type: 2}
     _weight: 3
     _totalWeight: 3
-  - _type: 1
+  - _type: {fileID: 11400000, guid: d2775bbfa2e9f1d46bdb8deaf1b62f6c, type: 2}
     _weight: 1
     _totalWeight: 4
-  - _type: 2
+  - _type: {fileID: 11400000, guid: 1d334b6c04ffdfb49be081c11a6077a8, type: 2}
     _weight: 1
     _totalWeight: 5
   _totalWeight: 5
+  _basePrefab: {fileID: 7343849545665983904, guid: c2acc0cb13e22a6468c48b33f8b5630b, type: 3}
 --- !u!114 &8207456776925462286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +177,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528d262be8d1fcb41a5ef8274a7f86f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Map::LocationSelector
+  OnSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &5094080491676965140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802508985614823572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea1d630f68d485c9822c4307809b8f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Map.Buildings::Map.Buildings.ResourceNetwork
+  _pollInterval: 1
+--- !u!1 &4359733875758296093
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8998179430854664062}
+  m_Layer: 9
+  m_Name: Vehicles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8998179430854664062
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4359733875758296093}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6302380464308014078}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9064304502756041595
 GameObject:
   m_ObjectHideFlags: 0

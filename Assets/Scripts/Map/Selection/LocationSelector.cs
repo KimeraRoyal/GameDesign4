@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Map
 {
@@ -6,22 +7,23 @@ namespace Map
     {
         LocationNode _currentSelection;
 
-        [SerializeField] Transform _popup;
+        public LocationNode CurrentSelection => _currentSelection;
+
+        public UnityEvent<LocationNode> OnSelected;
+        public UnityEvent OnDeselected;
 
         public void Select(LocationNode location)
         {
             if(_currentSelection == location) { return; }
-
             _currentSelection = location;
-
+            
             if (_currentSelection)
             {
-                _popup.gameObject.SetActive(true);
-                _popup.position = _currentSelection.transform.position + Vector3.up;
+                OnSelected?.Invoke(_currentSelection);
             }
             else
             {
-                _popup.gameObject.SetActive(false);
+                OnDeselected?.Invoke();
             }
         }
     }

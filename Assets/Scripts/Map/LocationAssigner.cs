@@ -33,6 +33,8 @@ namespace Map
         [SerializeField] WeightedOption[] _options;
         [SerializeField] float _totalWeight;
 
+        [SerializeField] Building _basePrefab;
+
         void Awake()
         {
             _map = GetComponent<SceneMap>();
@@ -57,13 +59,14 @@ namespace Map
             }
             
             if(!closestNode) { return; }
-            
-            closestNode.Type = LocationType.Building;
+
+            closestNode.Type = _options[0].Type;
+            closestNode.SpawnBuilding(_basePrefab);
         }
 
         LocationType SelectOption()
         {
-            if(_options.IsNullOrEmpty()) { return LocationType.Open; }
+            if(_options.IsNullOrEmpty()) { return _options[0].Type; }
 
             float selectedWeight = Random.Range(0.0f, _totalWeight);
             int selectedIndex;
